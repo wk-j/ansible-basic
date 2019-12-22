@@ -1,4 +1,9 @@
-- hosts: all
+# - hosts: all
+#   become: true
+#   roles:
+#     - basic
+
+- hosts: webservers
   become: true
   roles:
-    - basic
+    - webserver
