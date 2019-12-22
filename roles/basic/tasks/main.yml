@@ -1,0 +1,14 @@
+- name: "Intalling vim"
+  apt: name=vim state=present
+
+- name: "Installing dns utils"
+  apt: name=dnsutils state=present
+
+- name: "Installing git"
+  apt: name=git state=present
+
+- name: "Adding basicrc"
+  copy: src=../files/bash.bashrc dest=/etc/bash.bachrc owner=root group=root mode=0664
+
+- name: Removed bashrc
+  shell: creates=/root/.bashrc_backup mv /root/.bashrc /root/.bashrc_backup
