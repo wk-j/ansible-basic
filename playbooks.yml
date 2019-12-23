@@ -7,3 +7,13 @@
   become: true
   roles:
     - webserver
+
+- hosts: webservers
+  become: true
+  roles:
+    - appserver
+
+- hosts: webservers
+  become: true
+  roles:
+    - dbserver

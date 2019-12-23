@@ -1,14 +1,18 @@
-- name: "Intalling vim"
-  apt: name=vim state=present
+- name: "Installing additional software"
+  apt: pkg={{ item }} state=installed
+  with_items:
+  - dnsutils
+  - git
+  - vim
+  - ntp
+  - at
+  - lvm2
 
-- name: "Installing dns utils"
-  apt: name=dnsutils state=present
+- name: "Adding bashrc"
+  copy: src=../files/bash.bashrc dest=/etc/bash.bashrc owner=root group=root mode=0644
 
-- name: "Installing git"
-  apt: name=git state=present
+- name: "Removing Ben's bashrc"
+  shell: creates=/home/bf/.bashrc_backup mv /home/bf/.bashrc /home/bf/.bashrc_backup
 
-- name: "Adding basicrc"
-  copy: src=../files/bash.bashrc dest=/etc/bash.bachrc owner=root group=root mode=0664
-
-- name: Removed bashrc
+- name: "root's bashrc"
   shell: creates=/root/.bashrc_backup mv /root/.bashrc /root/.bashrc_backup
